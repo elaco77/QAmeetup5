@@ -1,0 +1,570 @@
+{
+  "id": "f761ecb2-0130-48d5-8f96-dcde871b95a4",
+  "version": "2.0",
+  "name": "real",
+  "url": "http://demo.realworld.io",
+  "tests": [{
+    "id": "e131d914-312c-4f7e-8936-90ad7d1e3b47",
+    "name": "sign up form",
+    "commands": [{
+      "id": "d6675669-ba0e-461c-a92c-318e919717c1",
+      "comment": "",
+      "command": "open",
+      "target": "/#/register",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ad3ef356-ef9f-441f-ae94-c39bda643bfc",
+      "comment": "set test data",
+      "command": "echo",
+      "target": "(2) SET TEST DATA",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56bcbda2-e4a3-4c10-a891-1238db4a9199",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return Date.now()",
+      "targets": [],
+      "value": "now"
+    }, {
+      "id": "01f6a4e8-50a5-4460-8784-c84ec37ae553",
+      "comment": "",
+      "command": "store",
+      "target": "user${now}",
+      "targets": [],
+      "value": "randomUsername"
+    }, {
+      "id": "3b53e07c-f99a-41c1-9f01-185f521a9191",
+      "comment": "",
+      "command": "store",
+      "target": "email${now}@email.com",
+      "targets": [],
+      "value": "randomEmail"
+    }, {
+      "id": "feed5c59-991c-4ab3-8170-1cbb49579098",
+      "comment": "",
+      "command": "store",
+      "target": "password",
+      "targets": [],
+      "value": "password"
+    }, {
+      "id": "de364995-b592-41c5-a93d-ba85a9360c34",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return [\"qaguy\", \"newQAusername\", \"newQAusername\"]",
+      "targets": [],
+      "value": "usernameList"
+    }, {
+      "id": "b29a26a0-b208-4912-b874-fdb331988036",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return [\"splitqa@meetup.com\", \"alen@alen.com\", \"splitqa@meetup.com\"]",
+      "targets": [],
+      "value": "emailList"
+    }, {
+      "id": "e8d91146-1b56-4a74-acb5-9dd03cf997be",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return [\"password\", \"password\", \"p\"]",
+      "targets": [],
+      "value": "passwordList"
+    }, {
+      "id": "6e3898e8-d475-497a-be7d-01277ab1389c",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return [\"username has already been taken\", \"email has already been taken\", \"password is too short (minimum is 8 characters)\"]",
+      "targets": [],
+      "value": "expectedMessages"
+    }, {
+      "id": "4ef5de44-41e2-465a-9bdb-d1c0f6825e27",
+      "comment": "test error messages",
+      "command": "echo",
+      "target": "(2) START LOOPING AND ASSERTING",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8cd1356b-ad17-4174-97a6-2aa8a765f8c5",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return 0",
+      "targets": [],
+      "value": "i"
+    }, {
+      "id": "d0c85604-9f37-4b2f-a2c9-496f97bbd93f",
+      "comment": "",
+      "command": "while",
+      "target": "${i} < 3",
+      "targets": [],
+      "value": "5"
+    }, {
+      "id": "11e1684c-4ab0-4655-9c6f-854e6fd31b94",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return ${usernameList}[${i}]",
+      "targets": [],
+      "value": "currentUsername"
+    }, {
+      "id": "8a16b56f-6992-405b-b656-280b7bcb00b2",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-not-empty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${currentUsername}"
+    }, {
+      "id": "5e8dea65-8139-4c76-801f-c26bb311e1fa",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return ${emailList}[${i}]",
+      "targets": [],
+      "value": "currentEmail"
+    }, {
+      "id": "f56446d1-660e-418d-84fb-13c0964ba7e0",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='email']",
+      "targets": [
+        ["css=.ng-invalid:nth-child(1)", "css:finder"],
+        ["xpath=//input[@type='email']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/input", "xpath:position"]
+      ],
+      "value": "${currentEmail}"
+    }, {
+      "id": "b5903991-e0a6-4cca-ad08-37a4c309706d",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return ${passwordList}[${i}]",
+      "targets": [],
+      "value": "currentPassword"
+    }, {
+      "id": "0fdbacfa-9f8d-488d-8084-c677da055bd1",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='password']",
+      "targets": [
+        ["css=.ng-untouched", "css:finder"],
+        ["xpath=//input[@type='password']", "xpath:attributes"],
+        ["xpath=//fieldset[3]/input", "xpath:position"]
+      ],
+      "value": "${currentPassword}"
+    }, {
+      "id": "69f044d2-d88c-4576-9df6-56423fc543e2",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return ${expectedMessages}[${i}]",
+      "targets": [],
+      "value": "currentMessage"
+    }, {
+      "id": "54d86278-e49b-4b65-b4c7-ab0577a1b204",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[@type='submit']",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e28e8b7-a60d-4eaa-8aae-66ee73a778cb",
+      "comment": "",
+      "command": "assertText",
+      "target": "xpath=//ul/div[1]/li",
+      "targets": [
+        ["css=.ng-scope:nth-child(1) > .ng-binding", "css:finder"],
+        ["css=li.ng-binding.ng-scope", "css"],
+        ["xpath=//div/li", "xpath:position"]
+      ],
+      "value": "${currentMessage}"
+    }, {
+      "id": "ab81fb1a-51ac-4634-b8b6-d9f8a72de9bc",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return ${i}+1",
+      "targets": [],
+      "value": "i"
+    }, {
+      "id": "812e6fdc-dd17-4540-8823-7b8ba92d68fe",
+      "comment": "",
+      "command": "open",
+      "target": "/#/register",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "091678c1-3864-472d-9c82-eab6cc2c8e02",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "07ef8632-186c-4ca2-8240-74bc3443320b",
+      "comment": "test successful signup",
+      "command": "echo",
+      "target": "(2) START HAPY PATH",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e9d0e84f-92b0-4552-86a8-f28da6abaf1e",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-not-empty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${randomUsername}"
+    }, {
+      "id": "5b80d8ea-1e57-4ce1-9595-fab6388323c9",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='email']",
+      "targets": [
+        ["css=.ng-invalid:nth-child(1)", "css:finder"],
+        ["xpath=//input[@type='email']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/input", "xpath:position"]
+      ],
+      "value": "${randomEmail}"
+    }, {
+      "id": "657fe35c-c32d-41a1-a238-f7ed8f8b5c1c",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='password']",
+      "targets": [
+        ["css=.ng-untouched", "css:finder"],
+        ["xpath=//input[@type='password']", "xpath:attributes"],
+        ["xpath=//fieldset[3]/input", "xpath:position"]
+      ],
+      "value": "${password}"
+    }, {
+      "id": "4e326604-8a87-42a6-81e7-8097b242a646",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[@type='submit']",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aebe9c29-ab0f-4ec3-ae16-169e9605b866",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//ul[@show-authed='true']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "22fa06ac-5847-42ed-a259-453a085ffe5e",
+      "comment": "logout after signup",
+      "command": "echo",
+      "target": "(2) START LOG OUT",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a1fdc990-e881-4080-9db0-496fb151cece",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Settings",
+      "targets": [
+        ["linkText=Settings", "linkText"],
+        ["css=.nav:nth-child(3) > .nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '#/settings')]", "xpath:href"],
+        ["xpath=//ul[2]/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0093671d-9925-4050-87bb-19fadd7ba2ae",
+      "comment": "",
+      "command": "executeScript",
+      "target": "window.scrollTo(0,document.body.scrollHeight);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed0f21f3-f119-417f-8012-d5dfd7a92334",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div/button",
+      "targets": [
+        ["css=.btn-outline-danger", "css:finder"],
+        ["css=button.btn.btn-outline-danger", "css"],
+        ["xpath=//div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "db2638c3-1c69-4822-a30e-37b40a2feae1",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Sign in",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "5d5185d7-459c-4f96-bf6c-792cded141cc",
+    "name": "set profile bio",
+    "commands": [{
+      "id": "0c6b932e-d273-4005-8e80-2de6141b6482",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d3dbe578-9f37-4090-a576-b90a3afb361f",
+      "comment": "log in",
+      "command": "echo",
+      "target": "(1) START LOGIN",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "25928768-78b6-4bd4-8be2-f316d5502589",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sign in",
+      "targets": [
+        ["linkText=Sign in", "linkText"],
+        ["css=.nav:nth-child(2) > .nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Sign in')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#/login')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0cb9e57d-452d-423e-a394-23f75204bbe9",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='email']",
+      "targets": [
+        ["css=.ng-not-empty", "css:finder"],
+        ["xpath=//input[@type='email']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/input", "xpath:position"]
+      ],
+      "value": "meetup@pics.com"
+    }, {
+      "id": "7ae053a1-90b9-4504-abd0-313c17312021",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='password']",
+      "targets": [
+        ["css=.ng-valid-parse:nth-child(1)", "css:finder"],
+        ["xpath=//input[@type='password']", "xpath:attributes"],
+        ["xpath=//fieldset[3]/input", "xpath:position"]
+      ],
+      "value": "password"
+    }, {
+      "id": "5898e379-4402-4734-ae64-e8be61386354",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[@type='submit']",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7df7d1c5-d6a6-4e00-9a52-ecd49c2d2883",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Your Feed",
+      "targets": [
+        ["linkText=Your Feed", "linkText"],
+        ["css=.nav-pills > .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Your Feed')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '')])[9]", "xpath:href"],
+        ["xpath=//div/div/ul/li/a", "xpath:position"]
+      ],
+      "value": "Your Feed"
+    }, {
+      "id": "f60ef43f-1065-439f-bd13-8c565006e3af",
+      "comment": "set profile bio if missing or remove if exists",
+      "command": "echo",
+      "target": "(1) START EDITING PROFILE",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9927da7e-bf06-4115-9e28-d04ee97cf760",
+      "comment": "",
+      "command": "open",
+      "target": "/#/settings",
+      "targets": [
+        ["linkText=Settings", "linkText"],
+        ["css=.nav:nth-child(3) > .nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '#/settings')]", "xpath:href"],
+        ["xpath=//ul[2]/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d4862f8-794e-4f25-bc9a-67dfdf43addc",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "//textarea[@placeholder='Short bio about you' and contains(@class, 'ng-empty')]",
+      "targets": [],
+      "value": "bioIsEmpty"
+    }, {
+      "id": "1be67282-4d34-4ee2-98d6-b2d339e9ed08",
+      "comment": "",
+      "command": "if",
+      "target": "${bioIsEmpty} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e671b65-9618-4701-90c1-260b411e9681",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//textarea[@placeholder='Short bio about you']",
+      "targets": [],
+      "value": "This is my bio"
+    }, {
+      "id": "63838ae1-0252-4eef-9d5a-2c8f02a65b4d",
+      "comment": "",
+      "command": "else",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f1acd117-4f6f-47cb-877c-d113b5e79d2f",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//textarea[@placeholder='Short bio about you']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e5a01a3f-3dba-4c29-8a3e-20ae38461f7f",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e1ae381d-a4b7-42bc-8f25-fe1665aec4df",
+      "comment": "",
+      "command": "executeScript",
+      "target": "window.scrollTo(0,document.body.scrollHeight);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "10352f56-1c4a-4e63-b3f2-91f0b09d8495",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[@type='submit']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "921ff80e-5600-4ec6-b8ed-234d67b1369e",
+      "comment": "assert successful change",
+      "command": "echo",
+      "target": "(1) START ASSERTIONS",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9cbdba4a-6123-4871-a278-56382e8dacc6",
+      "comment": "",
+      "command": "if",
+      "target": "${bioIsEmpty} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "775682d0-4840-401e-b69b-1822c8ab2c70",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//p[contains(text(), 'This is my bio')]",
+      "targets": [],
+      "value": "2000"
+    }, {
+      "id": "d83a6acf-1be6-4671-abd3-4e45cfbdd333",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//p[contains(text(), 'This is my bio')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e8fe2243-69e0-44bf-87cf-2a92772e63e4",
+      "comment": "",
+      "command": "else",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60d1bc34-60f0-4959-8ab2-5e8ee6a65e72",
+      "comment": "",
+      "command": "waitForElementNotPresent",
+      "target": "xpath=//p[contains(text(), 'This is my bio')]",
+      "targets": [],
+      "value": "2000"
+    }, {
+      "id": "81d74d87-d28d-4591-a674-cc9ee350eda4",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "xpath=//p[contains(text(), 'This is my bio')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6be671ad-242e-4ac1-aeee-15e732a1af77",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2eed0827-79af-4e4e-a0d7-3975effec0b3",
+      "comment": "logout",
+      "command": "echo",
+      "target": "(1) START LOG OUT",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae4a17de-0648-4add-a5c9-485350c6181f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Settings",
+      "targets": [
+        ["linkText=Settings", "linkText"],
+        ["css=.nav:nth-child(3) > .nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '#/settings')]", "xpath:href"],
+        ["xpath=//ul[2]/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1f0d580-b03b-4bcf-add6-02973363a198",
+      "comment": "",
+      "command": "executeScript",
+      "target": "window.scrollTo(0,document.body.scrollHeight);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5b59c6f-e56a-4dfd-a692-cb249f6cb477",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div/button",
+      "targets": [
+        ["css=.btn-outline-danger", "css:finder"],
+        ["css=button.btn.btn-outline-danger", "css"],
+        ["xpath=//div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c973ed6-fb5f-40bb-bfca-421e52a94a4d",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "linkText=Sign in",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "e20025b0-eb9b-47ac-9099-b56a92cf480d",
+    "name": "New IDE showcase",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5d5185d7-459c-4f96-bf6c-792cded141cc", "e131d914-312c-4f7e-8936-90ad7d1e3b47"]
+  }],
+  "urls": ["http://demo.realworld.io/"],
+  "plugins": []
+}
